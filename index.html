@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat Ao Vivo Online</title>
+    <style>
+      /* estilo CSS para o layout */
+      #chatbox {
+        border: 1px solid #00478a;
+        border-radius: 10px;
+        height: 400px;
+        overflow: auto;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      #userinput {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      #sendbutton {
+        background-color: rgb(137, 198, 255);
+        border-radius: 5px;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chatbox"></div>
+    <input type="text" id="userinput" placeholder="Digite sua mensagem aqui...">
+    <button id="sendbutton">Enviar</button>
+    <script>
+      var chatbox = document.getElementById("chatbox");
+      var userinput = document.getElementById("userinput");
+      var sendbutton = document.getElementById("sendbutton");
+
+      sendbutton.onclick = function() {
+        var message = userinput.value;
+        userinput.value = "";
+        var para = document.createElement("p");
+        para.innerText = message;
+        chatbox.appendChild(para);
+      };
+
+      userinput.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          sendbutton.click();
+        }
+      });
+    </script>
+
+    <script src="server.js"></script>
+  </body>
+</html>
